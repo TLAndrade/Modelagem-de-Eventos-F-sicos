@@ -23,7 +23,7 @@ def setup():
     size(900, 600)
 
 def draw():
-    global x1, x2, y1, y2, t0, m1, m2, h, teta, R, v1, teta2, aux, y, x
+    global x1, x2, y1, y2, t0, m1, m2, h, teta, R, v1, teta2, aux, y, x, Img
     translate(width/2, height/2)
 
     #variação do tempo 
@@ -77,23 +77,26 @@ def draw():
         v2 = sqrt(abs(2*(g*inic+ ((v2)^2)/2 - g*y2)))
         teta2 = teta2 + v2*dt/R
     
-
-        
-    
     #elif aux == True:
-        
         #v2 = sqrt(abs(2*g*(h-y1)))
-        
         
     #elif aux == 3: #x2 = 0:
         
-    
-        
+    #Imagem de fundo
     background(225)
+    
     ellipse(x1, y1, 20, 20)
     fill(191, 0, 255)
     ellipse(x2, y2, 20, 20)
     
+    #Trajetória
+    noFill()
+    stroke(160,82,45)
+    strokeWeight(4)
+    arc(-230, -290, 450, 450, radians(90), radians(180))
+    line(-230, -65, 5 , - 65)
+    ellipse(15, -165, 200, 200)
+    line(5, -65, 450 , - 65)
     
-    
+    #Pêndulo de Newton
     
