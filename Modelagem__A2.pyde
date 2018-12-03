@@ -82,8 +82,9 @@ def draw():
         y2 = -75
         
     #Imagem de fundo
-    background(225)
+    background(152,251,152)
     
+    #Bolinhas
     ellipse(x1, y1, 20, 20)
     fill(191, 0, 255)
     ellipse(x2, y2, 20, 20)
