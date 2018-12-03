@@ -9,9 +9,9 @@ y2 = -75
 #v2 = 
 m1 = 1  
 #m2 = 
-g = 1000
+g = 98
 teta = -PI/2
-teta2 = -PI/2
+teta2 = 0
 t0 = millis()/1000.0
 R = 225
 R2 = 100
@@ -23,11 +23,11 @@ def setup():
     size(900, 600)
 
 def draw():
-    global x1, x2, y1, y2, t0, m1, m2, h, teta, R, v1, teta2, aux, y, x, Img
+    global x1, x2, y1, y2, t0, m1, m2, h, teta, R, v1, teta2, aux, y, x, v2, y3, y4
     translate(width/2, height/2)
 
     #variação do tempo 
-    t2 =  millis()/10000.0
+    t2 =  millis()/1000.0
     dt = t2 - t0
     t0 = t2
     
@@ -35,52 +35,51 @@ def draw():
     fill(191, 255, 0)
     ellipse(x1, y1, 20, 20)
     line(-255,0,0,0)
-    #aux = aux + 1
     
-    #if aux == 0: 
     if x1 < -225:
         #atualização da posição e velocidade
         x1 = R*sin(teta) - 225
         y1 = R*cos(teta) - 300
         v1 = sqrt(abs(2*g*(h-y1)))
         teta = teta + v1*dt/R
-        
-    #v2 = v1
-    #elif aux == 1: 
+
     elif x1 < -112:
         x1 = x1 + v1*dt
         y1 = -75
         
-    #elif aux == 2: 
-    elif x1 >= -112 and x2 < 0:
+    elif x1 >= -112 and x2 < 0 and y2 == -75 and x < 1:
         x1 = -112
         y1 = -75
         x2 = x2 + v1*dt
-        y2 = -75 
-    
-    elif x2 >= 0 and y2 == -75 and y == 0:
-        x = x + 1
-    
-    elif x == 1 and y == 0:
-        x2 = R*sin(teta2) + 100
-        y2 = R*cos(teta2) -75
+        y2 = -75
         v2 = v1
-        teta2 = teta2 + v2*dt/R
+     
+    #elif x2 == x2_origem and y2 == y2_origem and x >= 1:
+        #x2 = x2 + v2*dt
+        #y2 = -75
+
+    elif x2 >= 0 and y2 <= 0 and y <= 0:
+        #posicao.append(x2)
+        #posicao.append(y2)
+        x = x + 1
+        y3 = y2
+        x2 = R2*sin(teta2) 
+        y2 = R2*cos(teta2) - 175
+        v2 = sqrt(abs(2*((v2**2)/2 + g*y3 - g*y2)))
+        teta2 = teta2 + v2*dt/R2
+
+    elif x2 <= 0 and y2 <= 0:
+        x = x + 1
         y = y + 1
-        v2 = sqrt(abs(2((v2^2)/2-g*y2)))
-    
-    elif y == 1 and x == 1:
-        inic = y2
-        inic2 = x2
-        x2 = R*sin(teta2) + 100
-        y2 = R*cos(teta2) -75
-        v2 = sqrt(abs(2*(g*inic+ ((v2)^2)/2 - g*y2)))
-        teta2 = teta2 + v2*dt/R
-    
-    #elif aux == True:
-        #v2 = sqrt(abs(2*g*(h-y1)))
+        y3 = y2
+        x2 = R2*sin(teta2) 
+        y2 = R2*cos(teta2) - 175
+        v2 = sqrt(abs(2*((v2**2)/2 + g*y3 - g*y2)))
+        teta2 = teta2 + v2*dt/R2
         
-    #elif aux == 3: #x2 = 0:
+    elif x2 >= 0 and y2 <= 0 and y > 0:
+        x2 = x2 + v2*dt
+        y2 = -75
         
     #Imagem de fundo
     background(225)
@@ -95,7 +94,7 @@ def draw():
     strokeWeight(4)
     arc(-230, -290, 450, 450, radians(90), radians(180))
     line(-230, -65, 5 , - 65)
-    ellipse(15, -165, 200, 200)
+    ellipse(0, -174, 216, 216)
     line(5, -65, 450 , - 65)
     
     #Pêndulo de Newton
