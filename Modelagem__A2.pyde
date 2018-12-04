@@ -80,14 +80,27 @@ def draw():
     elif x2 >= 0 and y2 <= 0 and y > 0:
         x2 = x2 + v2*dt
         y2 = -75
-        
-    #Imagem de fundo
-    background(152,251,152)
     
-    #Bolinhas
+    #movimento do pêndulo
+    elif x2 >= 300:
+        pass
+    
+    #Imagem de fundo
+    background(224,255,255)
+    
+    #Bolinhas colisão
     ellipse(x1, y1, 20, 20)
     fill(191, 0, 255)
     ellipse(x2, y2, 20, 20)
+    
+    #Bolinha estática
+    fill(75,0,130)
+    noStroke()
+    ellipse(330, -85,20, 20)
+        
+    #bolinha pêndulo
+    ellipse(350, -85,20, 20) 
+    ellipse(310, -85,20, 20)
     
     #Trajetória
     noFill()
@@ -99,4 +112,9 @@ def draw():
     line(5, -65, 450 , - 65)
     
     #Pêndulo de Newton
+    stroke(0)
+    strokeWeight(1)
+    line(330, -95 , 330, -190)
+    fill(165,42,42)
+    rect(300, -205, 60 , 15)
     
